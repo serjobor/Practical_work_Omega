@@ -1,38 +1,37 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
     //Animator animator;
-
-    Vector3 startGamePosition;
-    Quaternion startGameRotation;
-
-    
-    float laneOffset = 2.5f;
-    float laneChangeSpeed = 15;
-
     Rigidbody rb;
 
+    Vector3 startGamePosition;
     Vector3 targetVelocity;
-
-    float pointStart;
-    float pointFinish;
-
-    bool isMoving = false;
+    Quaternion startGameRotation;
     Coroutine movingCoroutine;
 
+    bool isMoving = false;
+    bool isJumping = false;
+
+    public float laneChangeSpeed = 15;
+    public float jumpPower = 15;
+    public float jumpGravity = -40;
+    float pointStart;
+    float pointFinish;
+    float laneOffset;
+    float realGravity = -9.8f;
     float lastVectorX;
 
-    bool isJumping = false;
-    float jumpPower = 15;
-    float jumpGravity = -40;
-    float realGravity = -9.8f;
+    [SerializeField] private int coins;
+    [SerializeField] private Text coinsText;
 
     // Start is called before the first frame update
     void Start()
     {
+        laneOffset = MapGenerator.instance.laneOffset;
         rb = GetComponent<Rigidbody>();
 
         startGamePosition = transform.position;
@@ -146,6 +145,13 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.tag == "Lose")
         {
             ResetGame();
+        }
+
+        if (other.gameObject.tag == "Coin")
+        {
+            coins++;
+            coinsText.text = coins.ToString();
+            Destroy(other.gameObject);
         }
     }
 

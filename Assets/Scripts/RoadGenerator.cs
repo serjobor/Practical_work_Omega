@@ -9,7 +9,7 @@ public class RoadGenerator : MonoBehaviour
     private List<GameObject> roads = new List<GameObject>();
 
     public float maxSpeed = 10;
-    private float speed = 0;
+    public float speed = 0;
     public int maxRoadCount = 5;
 
     internal static object instance;
@@ -72,5 +72,6 @@ public class RoadGenerator : MonoBehaviour
             CreateNextRoad();
         }
        SwipeManager.instance.enabled = false;
+       GameObject.Find("MapGenerator").GetComponent<MapGenerator>().ResetMaps();
     }
 }
