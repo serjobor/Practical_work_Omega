@@ -9,7 +9,6 @@ public class PlayerController : MonoBehaviour
     Rigidbody rb;
 
     Vector3 startGamePosition;
-    Vector3 targetVelocity;
     Quaternion startGameRotation;
     Coroutine movingCoroutine;
 
@@ -132,6 +131,11 @@ public class PlayerController : MonoBehaviour
         transform.position = startGamePosition;
         transform.rotation = startGameRotation;
 
+        ///////////////////////////////////////
+        coins = 0;
+        coinsText.text = coins.ToString();
+        ///////////////////////////////////////
+        ///
         GameObject.Find("RoadGenerator").GetComponent<RoadGenerator>().ResetLevel();
         //RoadGenerator.instance.ResetLevel();
     }
@@ -146,13 +150,13 @@ public class PlayerController : MonoBehaviour
         {
             ResetGame();
         }
-
+        ///////////////////////////////////////////////
         if (other.gameObject.tag == "Coin")
         {
             coins++;
             coinsText.text = coins.ToString();
-            Destroy(other.gameObject);
         }
+        //////////////////////////////////////////////
     }
 
     private void OnTriggerExit(Collider other)
@@ -186,7 +190,6 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
-
     //public void StartGame()
     //{
     //    //RoadGenerator.instance.StartLevel();

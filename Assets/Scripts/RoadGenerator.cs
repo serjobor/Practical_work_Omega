@@ -71,7 +71,8 @@ public class RoadGenerator : MonoBehaviour
         {
             CreateNextRoad();
         }
-       SwipeManager.instance.enabled = false;
-       GameObject.Find("MapGenerator").GetComponent<MapGenerator>().ResetMaps();
+
+        SwipeManager.instance.enabled = false;
+        GameObject.Find("MapGenerator").GetComponent<MapGenerator>().ResetMaps();
     }
 }
