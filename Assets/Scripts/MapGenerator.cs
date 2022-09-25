@@ -174,7 +174,7 @@ public class MapGenerator : MonoBehaviour
 
     GameObject MakeMap3()
     {
-        GameObject result = new GameObject("Map1");
+        GameObject result = new GameObject("Map3");
 
         result.transform.SetParent(transform);
 

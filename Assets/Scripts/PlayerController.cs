@@ -135,7 +135,7 @@ public class PlayerController : MonoBehaviour
         coins = 0;
         coinsText.text = coins.ToString();
         ///////////////////////////////////////
-        ///
+       
         GameObject.Find("RoadGenerator").GetComponent<RoadGenerator>().ResetLevel();
         //RoadGenerator.instance.ResetLevel();
     }
@@ -155,6 +155,7 @@ public class PlayerController : MonoBehaviour
         {
             coins++;
             coinsText.text = coins.ToString();
+            //Destroy(other.gameObject);
         }
         //////////////////////////////////////////////
     }
